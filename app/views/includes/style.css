@@ -1,0 +1,48 @@
+.top-nav{
+    background: black;
+    height: 70px;
+}
+li{
+    padding: 10px; 
+    
+}
+li:hover{
+    background: white;
+}
+a{
+    text-decoration: none;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: medium;
+    font-weight: 200;
+    color: white;
+}
+a:hover{
+    color: black;
+}
+.side-nav{
+    z-index: 1;
+    position: absolute;
+    background: black;
+    width: 250px;
+    height: 100vh;
+    border-radius: 0 10px 5px 0;
+    box-shadow: 0px 0px 10px ;
+}
+hr{
+    width: 170px;
+    height: 2px;
+    
+}
+ul{
+    float: left;
+}
+
+/* .wrapper-landing{
+    background: black;
+    position: absolute;
+    text-align: center;
+    margin: 0 auto auto 170px;
+    width: 100%;
+    top: 40%;
+    
+} */
