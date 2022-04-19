@@ -13,7 +13,7 @@
 <div class="wrapper-landing">
         
         <div class="container-item">
-            <img src="../img/iconJeco.png" alt="" width="100" height="auto" style="display: inline-block"><h1>Regular Booking</h1>
+            <img src="../img/iconJeco.png" alt="" width="100" height="auto" style="display: inline-block"><h1>Booking History</h1>
         </div>
         <div class="wrapper-border">
             <?php if($_SESSION['role'] == "Customer" && isset($_SESSION['user_id'])): ?>

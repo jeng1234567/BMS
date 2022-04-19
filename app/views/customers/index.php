@@ -181,7 +181,7 @@
                     <input type="number" placeholder="Contact" name="contact">
                     <br>
                     <label for="noOfPerson">Number of Person : </label>
-                    <input type="text" placeholder="No. of Person" name="noOfPerson">
+                    <input type="number" placeholder="No. of Person" name="noOfPerson">
                     <div class="wrapper-border">
                         <a class="btn green" href="<?php echo URLROOT; ?>/admins/addServices">
                             Add

@@ -40,7 +40,7 @@
             <?php if($_SESSION['role'] == "Admin" && isset($_SESSION['user_id'])) : ?>
                 <a href="<?php echo URLROOT; ?>/admins/stylist">Stylist</a>
             <?php elseif($_SESSION['role'] == "Customer" && isset($_SESSION['user_id'])): ?>
-                <a href="<?php echo URLROOT; ?>/customers/">Booking History</a>
+                <a href="<?php echo URLROOT; ?>/customers/bookingHistory">Booking History</a>
             <?php else: ?>
             <?php endif; ?></span></center>
         </li>

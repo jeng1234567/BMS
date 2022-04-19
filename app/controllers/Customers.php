@@ -13,7 +13,7 @@ class Customers extends Controller {
 
         $this->view('customers/index');
     }
-    public function booking() {
+    public function bookingHistory() {
         // $admins = $this->adminModel->findBookingRecords();
 
         // $data = [
@@ -26,7 +26,7 @@ class Customers extends Controller {
             header("Location: " . URLROOT . "admins/index");
         }
         else{
-            $this->view('customers/booking');
+            $this->view('customers/bookingHistory');
         }
         
     }
