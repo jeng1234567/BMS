@@ -13,7 +13,7 @@ class Customers extends Controller {
 
         $this->view('customers/index');
     }
-    public function regularBooking() {
+    public function booking() {
         // $admins = $this->adminModel->findBookingRecords();
 
         // $data = [
@@ -26,7 +26,24 @@ class Customers extends Controller {
             header("Location: " . URLROOT . "admins/index");
         }
         else{
-            $this->view('customers/regularBooking');
+            $this->view('customers/booking');
+        }
+        
+    }
+    public function bookingStatus() {
+        // $admins = $this->adminModel->findBookingRecords();
+
+        // $data = [
+        //     'admins' => $admins
+        // ];
+        if(!isLoggedIn()){
+            header("Location: " . URLROOT . "/index/");
+        }
+        elseif($_SESSION['role'] == "Admin"){
+            header("Location: " . URLROOT . "admins/index");
+        }
+        else{
+            $this->view('customers/bookingStatus');
         }
         
     }

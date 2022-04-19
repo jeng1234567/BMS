@@ -153,22 +153,40 @@
                 <button id="regB" class="tablinks" onclick="openCity(event, 'Paris')">Home Service</button>
                 </div>
                 <div id="London" class="tabcontent">
-                    <input type="text" placeholder="Branch">
+                    <label for="branch">Branch : </label>
+                    <input type="text" placeholder="Branch" name="branch">
                     <br>
-                    <input type="date" placeholder="Date">
+                    <label for="date">Date : </label>
+                    <input type="date" placeholder="Date" name="date">
                     <br>
-                    <input type="time" placeholder="Time">
+                    <label for="time">Time : </label>
+                    <input type="time" placeholder="Time" name="time">
+                    <div class="wrapper-border">
+                        <a class="btn green" href="<?php echo URLROOT; ?>/admins/addServices">
+                            Add
+                        </a>
+                    </div>
                 </div>
                 <div id="Paris" class="tabcontent">
-                    <input type="date" placeholder="Date">
+                    <label for="date">Date : </label>
+                    <input type="date" placeholder="Date" name="date">
                     <br>
-                    <input type="time" placeholder="Time">
+                    <label for="time">Time : </label>
+                    <input type="time" placeholder="Time" name="time">
                     <br>
-                    <input type="text" placeholder="Location">
+                    <label for="location">Location : </label>
+                    <input type="text" placeholder="Location" name="location">
                     <br>
-                    <input type="number" placeholder="Contact">
+                    <label for="contact">Contact : </label>
+                    <input type="number" placeholder="Contact" name="contact">
                     <br>
-                    <input type="text" placeholder="Number of Person">
+                    <label for="noOfPerson">Number of Person : </label>
+                    <input type="text" placeholder="No. of Person" name="noOfPerson">
+                    <div class="wrapper-border">
+                        <a class="btn green" href="<?php echo URLROOT; ?>/admins/addServices">
+                            Add
+                        </a>
+                    </div>
             </div>
         </div>
     </div>

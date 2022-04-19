@@ -2,7 +2,6 @@
 <?php include "style.css";?>
 </style>
 
-
 <div class="side-nav">
 <a href="#"><span style="margin-left: 100px; font-weight: 300px"><?php echo ucwords($_SESSION['role']); ?></span> </a>
     <hr style="height: 0.1; width: 210px">
@@ -31,7 +30,7 @@
             <?php if($_SESSION['role'] == "Admin" && isset($_SESSION['user_id'])) : ?>
                 <a href="<?php echo URLROOT; ?>/admins/services">Service</a>
             <?php elseif($_SESSION['role'] == "Customer" && isset($_SESSION['user_id'])): ?>
-                <a href="<?php echo URLROOT; ?>/customers/">Booking Details</a>
+                <a href="<?php echo URLROOT; ?>/customers/bookingStatus">Booking Status</a>
             <?php else: ?>
                 
             <?php endif; ?></span></center>
@@ -77,7 +76,7 @@
             <?php if($_SESSION['role'] == "Admin" && isset($_SESSION['user_id'])) : ?>
                 <a href="<?php echo URLROOT; ?>/admins/branch">Branch</a>
             <?php elseif($_SESSION['role'] == "Customer" && isset($_SESSION['user_id'])): ?>
-                <a href="<?php echo URLROOT; ?>/customers/">Help Desk</a>
+                <a href="<?php echo URLROOT; ?>/customers/">Setting</a>
             <?php else: ?>
             <?php endif; ?></span></center>
         </li>
