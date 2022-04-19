@@ -139,15 +139,79 @@
     <?php
         require APPROOT . '/views/includes/headDashboard.php';
     ?>
-    <div class="customer-landing">
-       <div class="customer-dashboard-nav">
+    <div class="admin-landing">
+       <div class="admin-dashboard-nav">
             <?php require APPROOT . '/views/includes/navigation.php'; ?>
        </div>
             <?php require APPROOT . '/views/includes/sidebar.php'; ?>
-    <div class="wrapper-landing">
-        <h1>Jay Tayers Customers Page</h1>
-        <h2>Booking Management System</h2>
+        <div class="wrapper-landing">
+            <div class="container-item">
+                <img src="../img/iconJeco.png" alt="" width="100" height="auto" style="display: inline-block"><h1>Booking</h1>
+            </div>
+            <div class="tab">
+                <button id="homeB" class="tablinks" onclick="openCity(event, 'London')">Regular Booking</button>
+                <button id="regB" class="tablinks" onclick="openCity(event, 'Paris')">Home Service</button>
+                </div>
+                <div id="London" class="tabcontent">
+                    <input type="text" placeholder="Branch">
+                    <br>
+                    <input type="date" placeholder="Date">
+                    <br>
+                    <input type="time" placeholder="Time">
+                </div>
+                <div id="Paris" class="tabcontent">
+                    <input type="date" placeholder="Date">
+                    <br>
+                    <input type="time" placeholder="Time">
+                    <br>
+                    <input type="text" placeholder="Location">
+                    <br>
+                    <input type="number" placeholder="Contact">
+                    <br>
+                    <input type="text" placeholder="Number of Person">
+            </div>
+        </div>
     </div>
+    <script>
+        const element = document.getElementById('homeB');
+        element.click();
+
+        function myFunction() {
+        // Declare variables
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("customers");
+            tr = table.getElementsByTagName("tr");
+
+            // Loop through all table rows, and hide those who don't match the search query
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[1];
+                if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+                }
+            }
+        }
+
+        function openCity(evt, cityName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
+        }
+    </script>
 <?php else : ?>
     <?php
         require APPROOT . '/views/includes/head.php';

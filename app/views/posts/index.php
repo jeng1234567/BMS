@@ -33,7 +33,7 @@
     <?php endif; ?>
     <?php foreach($data['posts'] as $post): ?>
         <div class="container-item">
-            <?php if(isset($_SESSION['user_id']) && $_SESSION['user_id'] == $post->user_id): ?>
+            <?php if(isset($_SESSION['user_id']) && $_SESSION['user_id'] == $post->user_id && $_SESSION['role'] == "Admin"): ?>
                 <a
                     class="btn orange"
                     href="<?php echo URLROOT . "/posts/update/" . $post->id ?>">
@@ -46,11 +46,9 @@
             <h2>
                 <?php echo $post->title; ?>
             </h2>
-
             <h3>
                 <?php echo 'Created on: ' . date('F j h:m', strtotime($post->created_at)) ?>
             </h3>
-
             <p>
                 <?php echo $post->body ?>
             </p>

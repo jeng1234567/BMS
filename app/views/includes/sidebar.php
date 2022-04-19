@@ -50,7 +50,7 @@
             <?php if($_SESSION['role'] == "Admin" && isset($_SESSION['user_id'])) : ?>
                 <a href="<?php echo URLROOT; ?>/admins/customers">Customer</a>
             <?php elseif($_SESSION['role'] == "Customer" && isset($_SESSION['user_id'])): ?>
-                <a href="<?php echo URLROOT; ?>/customers">Stylists</a>
+                <a href="<?php echo URLROOT; ?>/customers/">Stylists</a>
             <?php else: ?>
             <?php endif; ?></span></center>
         </li>
@@ -77,7 +77,7 @@
             <?php if($_SESSION['role'] == "Admin" && isset($_SESSION['user_id'])) : ?>
                 <a href="<?php echo URLROOT; ?>/admins/branch">Branch</a>
             <?php elseif($_SESSION['role'] == "Customer" && isset($_SESSION['user_id'])): ?>
-                
+                <a href="<?php echo URLROOT; ?>/customers/">Help Desk</a>
             <?php else: ?>
             <?php endif; ?></span></center>
         </li>

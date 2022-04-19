@@ -11,10 +11,10 @@ class Admins extends Controller {
             'admins' => $admins
         ];
         if(!isLoggedIn()){
-            header("Location: " . URLROOT . "/index");
+            header("Location: " . URLROOT . "/index/");
         }
         elseif($_SESSION['role'] == "Customer"){
-            header("Location: " . URLROOT . "/index");
+            header("Location: " . URLROOT . "/customers/index");
         }
         else{
             $this->view('admins/index');
