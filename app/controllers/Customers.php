@@ -10,8 +10,47 @@ class Customers extends Controller {
         // $data = [
         //     'customers' => $customers
         // ];
-
-        $this->view('customers/index');
+        
+        $customers = $this->customerModel->findBranch();
+    
+        $data = [
+            'customers' => $customers,
+            'id' => '',
+            'branch' => '',
+            'date' => '',
+            'time' => '',
+            'dateError' => '', 
+            'timeError' => ''
+        ];
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+            
+            $data = [
+                'user_id'=> $_SESSION['user_id'],
+                'branch' => trim($_POST['branch']),
+                'date' => trim($_POST['date']),
+                'time'=> trim($_POST['time']),
+                'dateError' => '', 
+                'timeError' => ''
+            ];
+            // var_dump($data['service']);
+            if (empty($data['date'])) {
+                $data['dateError'] = 'Please enter a value in this fields.';
+            } 
+            if (empty($data['time'])) {
+                $data['timeError'] = 'Please enter a value in this fields.';
+            } 
+            if (empty($data['dateError']) && empty($data['timeError'])) {
+                if ($this->customerModel->addRegularBooking($data)) {
+                    header("Location: " . URLROOT . "/customers/index");
+                } else {
+                    die("Something went wrong, please try again!");
+                }
+            } else {
+                $this->view('customers/index', $data);
+            }
+        }
+        $this->view('customers/index', $data);
     }
     public function bookingHistory() {
         // $admins = $this->adminModel->findBookingRecords();
@@ -30,6 +69,15 @@ class Customers extends Controller {
         }
         
     }
+    public function selectBranch(){
+        $customers = $this->customerModel->findBranch();
+        
+        $data = [
+            'customers' => $customers,
+        ];
+
+        $this->view('customers/index', $data);
+    }
     public function bookingStatus() {
         // $admins = $this->adminModel->findBookingRecords();
 
@@ -46,5 +94,52 @@ class Customers extends Controller {
             $this->view('customers/bookingStatus');
         }
         
+    }
+    public function addRegularBooking() {
+        // $admins = $this->adminModel->addService();
+        // var_dump($admins);
+        if(!isLoggedIn()){
+            header("Location: " . URLROOT . "/index/");
+        }
+        elseif($_SESSION['role'] == "Admin"){
+            header("Location: " . URLROOT . "admins/index");
+        }
+
+        $data = [
+            'branch_name' => '',
+            'branch_location' => '',
+            'branchNameError' => '',
+            'branchLocationError' => ''
+        ];
+
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+            
+            $data = [
+                'user_id'=> $_SESSION['user_id'],
+                'branch_name'=> trim($_POST['branch_name']),
+                'branch_location' => trim($_POST['branch_location']),
+                'branchNameError' => '', 
+                'branchLocationError' => ''
+            ];
+            // var_dump($data['service']);
+            if (empty($data['branch_name'])) {
+                $data['branchNameError'] = 'Please enter a value in this fields.';
+            } 
+            if (empty($data['branch_location'])) {
+                $data['branchLocationError'] = 'Please enter a value in this fields.';
+            } 
+            if (empty($data['branchNameError']) && empty($data['branchLocationError'])) {
+                if ($this->adminModel->addBranch($data)) {
+                    header("Location: " . URLROOT . "/admins/branch");
+                } else {
+                    die("Something went wrong, please try again!");
+                }
+            } else {
+                $this->view('admins/addBranch', $data);
+            }
+        }
+
+        $this->view('admins/addBranch', $data);
     }
 }

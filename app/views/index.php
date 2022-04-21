@@ -153,24 +153,83 @@
                 <button id="regB" class="tablinks" onclick="openCity(event, 'Paris')">Home Service</button>
                 </div>
                 <div id="London" class="tabcontent">
-                    <input type="text" placeholder="Branch">
+                    <label for="branch">Branch : </label>
+                    <input type="text" placeholder="Branch" name="branch">
                     <br>
-                    <input type="date" placeholder="Date">
+                    <label for="date">Date : </label>
+                    <input type="date" placeholder="Date" name="date">
                     <br>
-                    <input type="time" placeholder="Time">
+                    <label for="time">Time : </label>
+                    <input type="time" placeholder="Time" name="time">
+                    <div class="wrapper-border">
+                        <a class="btn green" href="<?php echo URLROOT; ?>/admins/addServices">
+                            Add
+                        </a>
+                    </div>
                 </div>
                 <div id="Paris" class="tabcontent">
-                    <input type="date" placeholder="Date">
+                    <label for="date">Date : </label>
+                    <input type="date" placeholder="Date" name="date">
                     <br>
-                    <input type="time" placeholder="Time">
+                    <label for="time">Time : </label>
+                    <input type="time" placeholder="Time" name="time">
                     <br>
-                    <input type="text" placeholder="Location">
+                    <label for="location">Location : </label>
+                    <input type="text" placeholder="Location" name="location">
                     <br>
-                    <input type="number" placeholder="Contact">
+                    <label for="contact">Contact : </label>
+                    <input type="number" placeholder="Contact" name="contact">
                     <br>
-                    <input type="text" placeholder="Number of Person">
+                    <label for="noOfPerson">Number of Person : </label>
+                    <input type="number" placeholder="No. of Person" name="noOfPerson">
+                    <div class="wrapper-border">
+                        <a class="btn green" href="<?php echo URLROOT; ?>/admins/addServices">
+                            Add
+                        </a>
+                    </div>
             </div>
         </div>
+    </div>
+    <script>
+        const element = document.getElementById('homeB');
+        element.click();
+
+        function myFunction() {
+        // Declare variables
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("myInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("customers");
+            tr = table.getElementsByTagName("tr");
+
+            // Loop through all table rows, and hide those who don't match the search query
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td")[1];
+                if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+                }
+            }
+        }
+
+        function openCity(evt, cityName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(cityName).style.display = "block";
+        evt.currentTarget.className += " active";
+        }
+    </script>
 <?php else : ?>
     <?php
         require APPROOT . '/views/includes/head.php';

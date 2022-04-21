@@ -153,19 +153,33 @@
                 <button id="regB" class="tablinks" onclick="openCity(event, 'Paris')">Home Service</button>
                 </div>
                 <div id="London" class="tabcontent">
-                    <label for="branch">Branch : </label>
-                    <input type="text" placeholder="Branch" name="branch">
-                    <br>
-                    <label for="date">Date : </label>
-                    <input type="date" placeholder="Date" name="date">
-                    <br>
-                    <label for="time">Time : </label>
-                    <input type="time" placeholder="Time" name="time">
-                    <div class="wrapper-border">
-                        <a class="btn green" href="<?php echo URLROOT; ?>/admins/addServices">
-                            Add
-                        </a>
-                    </div>
+                    <form action="<?php echo URLROOT; ?>/customers/index" method="POST">
+                        <br>
+                        <label for="branch">Branch : </label>
+                        <select name="branch" style="background: none; font-size: 20px ">
+                            <?php foreach($data['customers'] as $customer): ?>
+                                <option value="<?php echo $customer->id ?>"><?php echo $customer->branch_name ?></option>
+                            <?php endforeach; ?>
+                        </select>
+    
+                        <div class="form-item">
+                            <label for="date">Date : </label>
+                            <input type="date" placeholder="Date" name="date">
+                            <span class="invalidFeedback">
+                                <?php echo $data['dateError']; ?>
+                            </span>
+                        </div>
+                        <div class="form-item">
+                            <label for="time">Time : </label>
+                            <input type="time" placeholder="Time" name="time">
+                            <span class="invalidFeedback">
+                                <?php echo $data['timeError']; ?>
+                            </span>
+                        </div>
+                        <div class="wrapper-border">
+                            <button class="btn green" name="submit" type="submit">Add</button>
+                        </div>
+                    </form>
                 </div>
                 <div id="Paris" class="tabcontent">
                     <label for="date">Date : </label>
