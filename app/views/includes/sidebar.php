@@ -20,7 +20,7 @@
             <?php if($_SESSION['role'] == "Admin" && isset($_SESSION['user_id'])) : ?>
                 <a href="<?php echo URLROOT; ?>/admins/">Booking Records</a>
             <?php elseif($_SESSION['role'] == "Customer" && isset($_SESSION['user_id'])): ?>
-                <a href="<?php echo URLROOT; ?>/customers/">Booking</a>
+                <a href="<?php echo URLROOT; ?>/customers/regularBooking">Booking</a>
             <?php else: ?>
                
             <?php endif; ?></span></center>
@@ -30,7 +30,7 @@
             <?php if($_SESSION['role'] == "Admin" && isset($_SESSION['user_id'])) : ?>
                 <a href="<?php echo URLROOT; ?>/admins/services">Service</a>
             <?php elseif($_SESSION['role'] == "Customer" && isset($_SESSION['user_id'])): ?>
-                <a href="<?php echo URLROOT; ?>/customers/bookingStatus">Booking Status</a>
+                <a href="<?php echo URLROOT; ?>/customers/regularBookingHistory">Booking Status</a>
             <?php else: ?>
                 
             <?php endif; ?></span></center>

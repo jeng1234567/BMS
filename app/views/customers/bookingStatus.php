@@ -10,12 +10,12 @@
             <div class="container-item">
                 <img src="../img/iconJeco.png" alt="" width="100" height="auto" style="display: inline-block"><h1>Booking Status</h1>
             </div>
-            <label for="status">Status : </label>
+            <!-- <label for="status">Status : </label>
             <input type="text" placeholder="Status" name="status">
-            <br>
-            <label for="type">Type : </label>
+            <br> -->
+            <!-- <label for="type">Type : </label>
             <input type="text" placeholder="Type" name="type">
-            <br>
+            <br> -->
             <label for="branch">Branch : </label>
             <input type="text" placeholder="Branch" name="branch">
             <br>

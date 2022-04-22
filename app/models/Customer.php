@@ -43,4 +43,19 @@ class Customer {
             return false;
         }
     }
+    public function viewRegularBookingHistory(){
+        $this->db->query('SELECT * FROM regularbooking ORDER BY id ASC ');
+
+        $results = $this->db->resultSet();
+
+        return $results;
+    }
+
+    public function viewHomeServiceBookingHistory(){
+        $this->db->query('SELECT * FROM homeservice ORDER BY id ASC ');
+
+        $results = $this->db->resultSet();
+
+        return $results;
+    }
 }

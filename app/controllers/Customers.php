@@ -108,7 +108,158 @@ class Customers extends Controller {
         }
         $this->view('customers/index', $data, $dataHome);
     }
+
+    public function regularBooking(){
+        $customers = $this->customerModel->findBranch();
+
+        if(!isLoggedIn()){
+            header("Location: " . URLROOT . "/index/");
+        }
+        elseif($_SESSION['role'] == "Admin"){
+            header("Location: " . URLROOT . "admins/index");
+        }
+        
+        $data = [
+            'customers' => $customers,
+            'id' => '',
+            'branch' => '',
+            'date' => '',
+            'time' => '',
+            'dateError' => '',
+            'timeError' => ''
+            ];
+
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+            
+            $data = [
+                'user_id'=> $_SESSION['user_id'],
+                'branch' => trim($_POST['branch']),
+                'date' => trim($_POST['date']),
+                'time'=> trim($_POST['time']),
+                'dateError' => '', 
+                'timeError' => ''
+            ];
+            if (empty($data['date'])) {
+                $data['dateError'] = 'Please enter a value in this fields.';
+            } 
+            if (empty($data['time'])) {
+                $data['timeError'] = 'Please enter a value in this fields.';
+            } 
+            if (empty($data['dateError']) && empty($data['timeError'])) {
+                if ($this->customerModel->addRegularBooking($data)) {
+                    header("Location: " . URLROOT . "/customers/regularBooking");
+                } else {
+                    die("Something went wrong, please try again!");
+                }
+            } else {
+                $this->view('customers/regularBooking', $data);
+            }
+        }
+        $this->view('customers/regularBooking', $data);
     
+    }
+
+    public function regularBookingHistory(){
+        $customers = $this->customerModel->viewRegularBookingHistory();
+        // var_dump($admins);
+        $data = [
+            'customers' => $customers
+        ];
+        if(!isLoggedIn()){
+            header("Location: " . URLROOT . "/index/");
+        }
+        elseif($_SESSION['role'] == "Admin"){
+            header("Location: " . URLROOT . "admins/index");
+        }
+        else{
+            $this->view('customers/regularBookingHistory', $data);
+        }
+    }
+
+    public function homeServiceBookingHistory(){
+        $customers = $this->customerModel->viewHomeServiceBookingHistory();
+        // var_dump($admins);
+        $data = [
+            'customers' => $customers
+        ];
+        if(!isLoggedIn()){
+            header("Location: " . URLROOT . "/index/");
+        }
+        elseif($_SESSION['role'] == "Admin"){
+            header("Location: " . URLROOT . "admins/index");
+        }
+        else{
+            $this->view('customers/homeServiceBookingHistory', $data);
+        }
+    }
+    public function homeServiceBooking(){
+
+        if(!isLoggedIn()){
+            header("Location: " . URLROOT . "/index/");
+        }
+        elseif($_SESSION['role'] == "Admin"){
+            header("Location: " . URLROOT . "admins/index");
+        }
+        $data = [
+            'location' => '',
+            'contact' => '',
+            'numberOfPerson' => '',
+            'date'=> '',
+            'time'=> '',
+            'locationError' => '',
+            'contactError' => '',
+            'noOfPersonError' => '',
+            'dateErrorHome' => '',
+            'timeErrorHome' => ''
+        ];
+
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+            
+            $data = [
+                'user_id'=> $_SESSION['user_id'],
+                'location' => trim($_POST['location']),
+                'contact' => trim($_POST['contact']),
+                'numberOfPerson' => trim($_POST['numberOfPerson']),
+                'date'=> trim($_POST['date']),
+                'time'=> trim($_POST['time']),
+                'locationError' => '', 
+                'contactError' => '', 
+                'noOfPersonError' => '', 
+                'dateErrorHome' => '', 
+                'timeErrorHome' => ''
+            ];
+
+            //HomeServiceBooking
+            if (empty($data['location'])) {
+                $data['locationError'] = 'Please enter a value in this fields.';
+            } 
+            if (empty($data['contact'])) {
+                $data['contactError'] = 'Please enter a value in this fields.';
+            } 
+            if (empty($data['numberOfPerson'])) {
+                $data['noOfPersonError'] = 'Please enter a value in this fields.';
+            } 
+            if (empty($data['date'])) {
+                $data['dateErrorHome'] = 'Please enter a value in this fields.';
+            } 
+            if (empty($data['time'])) {
+                $data['timeErrorHome'] = 'Please enter a value in this fields.';
+            } 
+            if (empty($data['locationError']) && empty($data['contactError']) && empty($data['noOfPersonError']) && empty($data['dateErrorHome']) && empty($data['timeErrorHome'])) {
+                if ($this->customerModel->addHomeService($data)) {
+                    header("Location: " . URLROOT . "/customers/homeServiceBooking");
+                } else {
+                    die("Something went wrong, please try again!");
+                }
+            } else {
+                $this->view('customers/homeServiceBooking', $data);
+            }
+        }
+        $this->view('customers/homeServiceBooking', $data);
+        
+    }
     public function bookingHistory() {
         // $admins = $this->adminModel->findBookingRecords();
 
