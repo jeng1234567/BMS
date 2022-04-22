@@ -153,12 +153,12 @@
                 <button id="regB" class="tablinks" onclick="openCity(event, 'Paris')">Home Service</button>
                 </div>
                 <div id="London" class="tabcontent">
-                    <form action="<?php echo URLROOT; ?>/customers/index" method="POST">
+                    <form action="<?php echo URLROOT; ?>/customers/" method="POST">
                         <br>
                         <label for="branch">Branch : </label>
                         <select name="branch" style="background: none; font-size: 20px ">
                             <?php foreach($data['customers'] as $customer): ?>
-                                <option value="<?php echo $customer->id ?>"><?php echo $customer->branch_name ?></option>
+                                <option value="<?php echo $customer->branch_name ?>"><?php echo $customer->branch_name ?></option>
                             <?php endforeach; ?>
                         </select>
     
@@ -182,25 +182,46 @@
                     </form>
                 </div>
                 <div id="Paris" class="tabcontent">
-                    <label for="date">Date : </label>
-                    <input type="date" placeholder="Date" name="date">
-                    <br>
-                    <label for="time">Time : </label>
-                    <input type="time" placeholder="Time" name="time">
-                    <br>
-                    <label for="location">Location : </label>
-                    <input type="text" placeholder="Location" name="location">
-                    <br>
-                    <label for="contact">Contact : </label>
-                    <input type="number" placeholder="Contact" name="contact">
-                    <br>
-                    <label for="noOfPerson">Number of Person : </label>
-                    <input type="number" placeholder="No. of Person" name="noOfPerson">
-                    <div class="wrapper-border">
-                        <a class="btn green" href="<?php echo URLROOT; ?>/admins/addServices">
-                            Add
-                        </a>
-                    </div>
+                    <form action="<?php echo URLROOT; ?>/customers/" method="POST">
+                        <div class="form-item">
+                            <label for="date">Date : </label>
+                            <input type="date" placeholder="Date" name="date">
+                            <span class="invalidFeedback">
+                                <?php echo $dataHome['dateErrorHome']; ?>
+                            </span>
+                        </div>
+                        <div class="form-item">
+                            <label for="time">Time : </label>
+                            <input type="time" placeholder="Time" name="time">
+                            <span class="invalidFeedback">
+                                <?php echo $dataHome['timeErrorHome']; ?>
+                            </span>
+                        </div>
+                        <div class="form-item">
+                            <label for="location">Location : </label>
+                            <input type="text" placeholder="Location" name="location">
+                            <span class="invalidFeedback">
+                                <?php echo $dataHome['LocationError']; ?>
+                            </span>
+                        </div>
+                        <div class="form-item">
+                            <label for="contact">Contact : </label>
+                            <input type="number" placeholder="Contact" name="contact">
+                            <span class="invalidFeedback">
+                                <?php echo $dataHome['contactError']; ?>
+                            </span>
+                        </div>
+                        <div class="form-item">
+                            <label for="numberOfPerson">Number of Person : </label>
+                            <input type="number" placeholder="No. of Person" name="numberOfPerson">
+                            <span class="invalidFeedback">
+                                <?php echo $dataHome['noOfPersonError']; ?>
+                            </span>
+                        </div>
+                        <div class="wrapper-border">
+                            <button class="btn green" name="submit" type="submit">Add</button>
+                        </div>
+                    </form>
             </div>
         </div>
     </div>

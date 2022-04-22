@@ -19,9 +19,24 @@ class Customers extends Controller {
             'branch' => '',
             'date' => '',
             'time' => '',
-            'dateError' => '', 
+            'dateError' => '',
             'timeError' => ''
         ];
+
+        $dataHome = [
+            'customers' => $customers,
+            'location' => '',
+            'contact' => '',
+            'numberOfPerson' => '',
+            'date'=> '',
+            'time'=> '',
+            'locationError' => '',
+            'contactError' => '',
+            'noOfPersonError' => '',
+            'dateErrorHome' => '',
+            'timeErrorHome' => ''
+        ];
+
         if($_SERVER['REQUEST_METHOD'] == 'POST'){
             $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
             
@@ -33,6 +48,21 @@ class Customers extends Controller {
                 'dateError' => '', 
                 'timeError' => ''
             ];
+
+            $dataHome = [
+                'user_id'=> $_SESSION['user_id'],
+                'location' => trim($_POST['location']),
+                'contact' => trim($_POST['contact']),
+                'numberOfPerson' => trim($_POST['numberOfPerson']),
+                'date'=> trim($_POST['date']),
+                'time'=> trim($_POST['time']),
+                'locationError' => '', 
+                'contactError' => '', 
+                'noOfPersonError' => '', 
+                'dateErrorHome' => '', 
+                'timeErrorHome' => ''
+            ];
+
             // var_dump($data['service']);
             if (empty($data['date'])) {
                 $data['dateError'] = 'Please enter a value in this fields.';
@@ -49,9 +79,36 @@ class Customers extends Controller {
             } else {
                 $this->view('customers/index', $data);
             }
+            //HomeServiceBooking
+            if (empty($dataHome['location'])) {
+                $dataHome['locationError'] = 'Please enter a value in this fields.';
+            } 
+            if (empty($dataHome['contact'])) {
+                $dataHome['contactError'] = 'Please enter a value in this fields.';
+            } 
+            if (empty($dataHome['numberOfPerson'])) {
+                $dataHome['noOfPersonError'] = 'Please enter a value in this fields.';
+            } 
+            if (empty($dataHome['date'])) {
+                $dataHome['dateErrorHome'] = 'Please enter a value in this fields.';
+            } 
+            if (empty($dataHome['time'])) {
+                $dataHome['timeErrorHome'] = 'Please enter a value in this fields.';
+            } 
+            if (empty($dataHome['locationError']) && empty($dataHome['contactError']) && empty($dataHome['noOfPersonError']) && empty($dataHome['dateErrorHome']) && empty($dataHome['timeErrorHome'])) {
+                if ($this->customerModel->addHomeService($dataHome)) {
+                    header("Location: " . URLROOT . "/customers/index");
+                } else {
+                    die("Something went wrong, please try again!");
+                }
+            } else {
+                $this->view('customers/index', $dataHome);
+            }
+
         }
-        $this->view('customers/index', $data);
+        $this->view('customers/index', $data, $dataHome);
     }
+    
     public function bookingHistory() {
         // $admins = $this->adminModel->findBookingRecords();
 
@@ -69,6 +126,7 @@ class Customers extends Controller {
         }
         
     }
+
     public function selectBranch(){
         $customers = $this->customerModel->findBranch();
         
@@ -78,6 +136,7 @@ class Customers extends Controller {
 
         $this->view('customers/index', $data);
     }
+
     public function bookingStatus() {
         // $admins = $this->adminModel->findBookingRecords();
 
@@ -95,6 +154,7 @@ class Customers extends Controller {
         }
         
     }
+
     public function addRegularBooking() {
         // $admins = $this->adminModel->addService();
         // var_dump($admins);
