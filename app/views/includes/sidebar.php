@@ -80,6 +80,7 @@
             <?php else: ?>
             <?php endif; ?></span></center>
         </li>
+        
         <hr>
     </ul>
 </div>

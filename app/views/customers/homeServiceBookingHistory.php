@@ -30,7 +30,6 @@
                                 <th>Date</th>
                                 <th>Time</th>
                                 <th></th>
-                            </tr>
                             <?php foreach($data['customers'] as $customer): ?>
                             <tr>
                                 <td><?php echo $customer->id; ?></td>

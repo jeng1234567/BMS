@@ -1,6 +1,7 @@
 <?php
 class Customer {
     private $db;
+    private $db1;
     public function __construct() {
         $this->db = new Database;
     }
@@ -14,9 +15,12 @@ class Customer {
     }
 
     public function addRegularBooking($data){
-        $this->db->query('INSERT INTO regularbooking (branch, date, time) VALUES(:branch, :date, :time)');
+        $customerId = $_SESSION['user_id'];
+
+        $this->db->query('INSERT INTO regularbooking (branch, date, time, user_id) VALUES(:branch, :date, :time, :customerId)');
 
         // $this->db->bind(':id', $data['id']);
+        $this->db->bind(':customerId', $data['user_id']);
         $this->db->bind(':branch', $data['branch']);
         $this->db->bind(':date', $data['date']);
         $this->db->bind(':time', $data['time']);
@@ -28,9 +32,12 @@ class Customer {
         }
     }
     public function addHomeService($dataHome){
-        $this->db->query('INSERT INTO homeservice (location, contact, numberOfPerson, date, time) VALUES(:location, :contact, :numberOfPerson, :date, :time)');
+        $customerId = $_SESSION['user_id'];
+
+        $this->db->query('INSERT INTO homeservice (location, contact, numberOfPerson, date, time, user_id) VALUES(:location, :contact, :numberOfPerson, :date, :time, :customerId)');
 
         // $this->db->bind(':id', $data['id']);
+        $this->db->bind(':customerId', $dataHome['user_id']);
         $this->db->bind(':location', $dataHome['location']);
         $this->db->bind(':contact', $dataHome['contact']);
         $this->db->bind(':numberOfPerson', $dataHome['numberOfPerson']);
@@ -44,7 +51,9 @@ class Customer {
         }
     }
     public function viewRegularBookingHistory(){
-        $this->db->query('SELECT * FROM regularbooking ORDER BY id ASC ');
+        $customerId = $_SESSION['user_id'];
+
+        $this->db->query('SELECT * FROM regularbooking WHERE user_id ='.$customerId.'');
 
         $results = $this->db->resultSet();
 
@@ -52,10 +61,13 @@ class Customer {
     }
 
     public function viewHomeServiceBookingHistory(){
-        $this->db->query('SELECT * FROM homeservice ORDER BY id ASC ');
+        $customerId = $_SESSION['user_id'];
+
+        $this->db->query('SELECT * FROM homeservice WHERE user_id ='.$customerId.'');
 
         $results = $this->db->resultSet();
 
         return $results;
     }
+
 }
