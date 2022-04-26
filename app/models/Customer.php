@@ -16,11 +16,13 @@ class Customer {
 
     public function addRegularBooking($data){
         $customerId = $_SESSION['user_id'];
+        $customerName = $_SESSION['username'];
 
-        $this->db->query('INSERT INTO regularbooking (branch, date, time, user_id) VALUES(:branch, :date, :time, :customerId)');
+        $this->db->query('INSERT INTO regularbooking (customer, branch, date, time, user_id) VALUES(:customerName, :branch, :date, :time, :customerId)');
 
         // $this->db->bind(':id', $data['id']);
         $this->db->bind(':customerId', $data['user_id']);
+        $this->db->bind(':customerName', $data['customer']);
         $this->db->bind(':branch', $data['branch']);
         $this->db->bind(':date', $data['date']);
         $this->db->bind(':time', $data['time']);
@@ -33,11 +35,13 @@ class Customer {
     }
     public function addHomeService($dataHome){
         $customerId = $_SESSION['user_id'];
+        $customerName = $_SESSION['username'];
 
-        $this->db->query('INSERT INTO homeservice (location, contact, numberOfPerson, date, time, user_id) VALUES(:location, :contact, :numberOfPerson, :date, :time, :customerId)');
+        $this->db->query('INSERT INTO homeservice (customer, location, contact, numberOfPerson, date, time, user_id) VALUES(:customerName, :location, :contact, :numberOfPerson, :date, :time, :customerId)');
 
         // $this->db->bind(':id', $data['id']);
         $this->db->bind(':customerId', $dataHome['user_id']);
+        $this->db->bind(':customerName', $dataHome['customer']);
         $this->db->bind(':location', $dataHome['location']);
         $this->db->bind(':contact', $dataHome['contact']);
         $this->db->bind(':numberOfPerson', $dataHome['numberOfPerson']);

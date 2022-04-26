@@ -55,6 +55,10 @@
                         <a class="btn green" href="<?php echo URLROOT; ?>/customers/addServices">
                             Add
                         </a>
+                        <?php
+                            $customerName = $_SESSION['username'];
+                            echo $customerName;
+                        ?>
                 </div>
             </div>
         </div>

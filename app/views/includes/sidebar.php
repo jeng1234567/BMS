@@ -8,12 +8,12 @@
     <ul>
         <li><center><span>
             <?php if($_SESSION['role'] == "Admin" && isset($_SESSION['user_id'])): ?>
-                <a href="<?php echo URLROOT; ?>/admins/bookingStatus">Booking Status</a>
+                <a href="<?php echo URLROOT; ?>/admins/regularBookingRecords">Booking Status</a>
             <?php elseif($_SESSION['role'] == "Customer" && isset($_SESSION['user_id'])): ?>
                 <a href="<?php echo URLROOT; ?>/posts">View Products</a>
             <?php else: ?>
 
-            <?php endif; ?></span></center>
+            <?php endif; ?></span></center> 
         </li>
         <hr>
         <li><center><span>

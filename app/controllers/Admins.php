@@ -92,6 +92,7 @@ class Admins extends Controller {
             $this->view('admins/customers', $data);
         }
     }
+
     public function stylist() {
         $admins = $this->adminModel->findStylist();
         // var_dump($admins);
@@ -109,6 +110,7 @@ class Admins extends Controller {
         }
 
     }
+
     public function services() {
         $admins = $this->adminModel->findServices();
         // var_dump($admins);
@@ -124,9 +126,43 @@ class Admins extends Controller {
         else{
             $this->view('admins/services', $data);
         }
-
     }
 
+    public function regularBookingRecords(){
+        $admins = $this->adminModel->viewRegularBookingRecords();
+
+        $data = [
+            'admins' => $admins
+        ];
+
+        if(!isLoggedIn()){
+            header("Location: " . URLROOT . "/index");
+        }
+        elseif($_SESSION['role'] == "Customer"){
+            header("Location: " . URLROOT . "/index");
+        }
+        else{
+            $this->view('admins/regularBookingRecords', $data);
+        }
+    }
+
+    public function homeServiceRecords(){
+        $admins = $this->adminModel->viewHomeServiceRecords();
+
+        $data = [
+            'admins' => $admins
+        ];
+
+        if(!isLoggedIn()){
+            header("Location: " . URLROOT . "/index");
+        }
+        elseif($_SESSION['role'] == "Customer"){
+            header("Location: " . URLROOT . "/index");
+        }
+        else{
+            $this->view('admins/homeServiceRecords', $data);
+        }
+    }
     public function addBranch() {
         // $admins = $this->adminModel->addService();
         // var_dump($admins);

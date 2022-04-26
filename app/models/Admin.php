@@ -200,6 +200,21 @@ class Admin {
         }
     }
 
+    public function viewRegularBookingRecords(){
+        $this->db->query('SELECT * FROM regularbooking ORDER BY id ASC LIMIT 5');
+
+        $results = $this->db->resultSet();
+
+        return $results;
+    }
+
+    public function viewHomeServiceRecords(){
+        $this->db->query('SELECT * FROM homeservice ORDER BY id ASC LIMIT 5');
+
+        $results = $this->db->resultSet();
+
+        return $results;
+    }
     public function findStylist(){
         $this->db->query('SELECT * FROM stylist ORDER BY id ASC');
 

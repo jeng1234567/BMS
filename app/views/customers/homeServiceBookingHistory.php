@@ -20,6 +20,10 @@
                 <a href="<?php echo URLROOT; ?>/customers/homeServiceBookingHistory"><button id="regB" class="tablinks">Home Service</button></a>
                 </div>
                     <div class="wrapper-border">
+                    <?php
+                            $customerName = $_SESSION['username'];
+                            echo $customerName;
+                        ?>
                         <table id="customers">
                             <tr>
                                 <th>ID</th>
@@ -58,6 +62,7 @@
                         <a class="btn green" href="<?php echo URLROOT; ?>/customers/addServices">
                             Add
                         </a>
+                        
                 </div>
             </div>
         </div>

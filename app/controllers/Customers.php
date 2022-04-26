@@ -122,6 +122,7 @@ class Customers extends Controller {
         $data = [
             'customers' => $customers,
             'id' => '',
+            'customer' => '',
             'branch' => '',
             'date' => '',
             'time' => '',
@@ -134,6 +135,7 @@ class Customers extends Controller {
             
             $data = [
                 'user_id'=> $_SESSION['user_id'],
+                'customer' => $_SESSION['username'],
                 'branch' => trim($_POST['branch']),
                 'date' => trim($_POST['date']),
                 'time'=> trim($_POST['time']),
@@ -202,6 +204,7 @@ class Customers extends Controller {
             header("Location: " . URLROOT . "admins/index");
         }
         $data = [
+            'customer' => '',
             'location' => '',
             'contact' => '',
             'numberOfPerson' => '',
@@ -219,6 +222,7 @@ class Customers extends Controller {
             
             $data = [
                 'user_id'=> $_SESSION['user_id'],
+                'customer' => $_SESSION['username'],
                 'location' => trim($_POST['location']),
                 'contact' => trim($_POST['contact']),
                 'numberOfPerson' => trim($_POST['numberOfPerson']),
