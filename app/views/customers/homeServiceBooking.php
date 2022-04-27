@@ -8,7 +8,8 @@
             <?php require APPROOT . '/views/includes/sidebar.php'; ?>
         <div class="wrapper-landing">
             <div class="container-item">
-                <img src="../img/iconJeco.png" alt="" width="100" height="auto" style="display: inline-block"><h1>Home Service Booking</h1>
+            <img src="../img/iconJeco.png" alt="" width="100" height="auto" style="display: inline-block"><h1>Booking </h1>
+                <h2 style="color: white; font-style: italic">Home Service Booking</h2>
             </div>
             <div class="tab">
                 <a href="<?php echo URLROOT; ?>/customers/regularBooking"><button id="homeB" class="tablinks">Regular Booking</button></a>

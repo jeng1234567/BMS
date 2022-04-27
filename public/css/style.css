@@ -8,7 +8,11 @@ html, body {
     font-family: 'Lato', sans-serif;
     background-color: #f2f2f2;
 }
-
+.scrollable-div{
+    height: 300px; 
+    width: auto;
+    overflow: scroll;
+}
 a {
     text-decoration: none;
 }

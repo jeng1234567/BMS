@@ -164,6 +164,31 @@ class Admin {
         }   
     }
 
+    public function updateRegularBookingRecords($data){
+        $this->db->query('UPDATE regularbooking SET remark = :remark WHERE id = :id');
+
+        $this->db->bind(':id', $data['id']);
+        $this->db->bind(':remark', $data['remark']);
+
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }   
+    }
+
+    public function updateHomeServiceRecords($data){
+        $this->db->query('UPDATE homeservice SET remark = :remark WHERE id = :id');
+
+        $this->db->bind(':id', $data['id']);
+        $this->db->bind(':remark', $data['remark']);
+
+        if ($this->db->execute()) {
+            return true;
+        } else {
+            return false;
+        }   
+    }
     public function deleteServices($id){
         $this->db->query('DELETE FROM services WHERE id = :id');
         
@@ -201,7 +226,7 @@ class Admin {
     }
 
     public function viewRegularBookingRecords(){
-        $this->db->query('SELECT * FROM regularbooking ORDER BY id ASC LIMIT 5');
+        $this->db->query('SELECT * FROM regularbooking ORDER BY id');
 
         $results = $this->db->resultSet();
 
@@ -209,7 +234,7 @@ class Admin {
     }
 
     public function viewHomeServiceRecords(){
-        $this->db->query('SELECT * FROM homeservice ORDER BY id ASC LIMIT 5');
+        $this->db->query('SELECT * FROM homeservice ORDER BY id');
 
         $results = $this->db->resultSet();
 
@@ -221,5 +246,23 @@ class Admin {
         $results = $this->db->resultSet();
 
         return $results;
+    }
+    public function findRegularBookingRecordsById($id){
+        $this->db->query('SELECT * FROM regularbooking WHERE id = :id');
+
+        $this->db->bind(':id', $id);
+
+        $row = $this->db->single();
+
+        return $row;
+    }
+    public function findHomeServiceRecordsById($id){
+        $this->db->query('SELECT * FROM homeservice WHERE id = :id');
+
+        $this->db->bind(':id', $id);
+
+        $row = $this->db->single();
+
+        return $row;
     }
 }

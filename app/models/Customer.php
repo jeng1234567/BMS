@@ -57,7 +57,7 @@ class Customer {
     public function viewRegularBookingHistory(){
         $customerId = $_SESSION['user_id'];
 
-        $this->db->query('SELECT * FROM regularbooking WHERE user_id ='.$customerId.'');
+        $this->db->query('SELECT * FROM regularbooking WHERE user_id ='.$customerId.' AND remark = "Done"');
 
         $results = $this->db->resultSet();
 
@@ -67,7 +67,7 @@ class Customer {
     public function viewHomeServiceBookingHistory(){
         $customerId = $_SESSION['user_id'];
 
-        $this->db->query('SELECT * FROM homeservice WHERE user_id ='.$customerId.'');
+        $this->db->query('SELECT * FROM homeservice WHERE user_id ='.$customerId.' AND remark = "Done"');
 
         $results = $this->db->resultSet();
 

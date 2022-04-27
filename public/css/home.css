@@ -183,7 +183,7 @@ input::placeholder {
 }
 .wrapper-border{
     background: rgba(180, 180, 180, 0.8);
-    padding: 10px 10px 70px 10px;
+    padding: 10px 10px 10px 10px;
 }
 .container {
     margin: 0 auto;
@@ -380,3 +380,7 @@ textarea {
     height: auto;
     transform: scale(1);
   }
+  .scrollable-div{
+    height: 375px; 
+    overflow: scroll;
+}

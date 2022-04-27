@@ -24,6 +24,7 @@
                 <a href="<?php echo URLROOT; ?>/admins/homeServiceRecords"><button id="regB" class="tablinks">Home Service</button></a>
                 </div>
                     <div class="wrapper-border">
+                    <div class="scrollable-div">
                         <table id="customers">
                             <tr>
                                 <th>ID</th>
@@ -48,19 +49,17 @@
                                     <?php if(isset($_SESSION['user_id']) == $admin->id): ?>
                                     <a
                                         class="btn green"
-                                        style="margin: 2px; padding: 6px"
-                                        href="<?php echo URLROOT . "/admins/updateServices/" . $admin->id ?>">
-                                        Approve
+                                        style="margin: 1px; padding: 6px 9px 6px 9px"
+                                        href="<?php echo URLROOT . "/admins/updateHomeServiceRecords/" . $admin->id ?>">
+                                        Add Remarks
                                     </a>
-                                    <form action="<?php echo URLROOT . "/admins/delete/" . $admin->id ?>" method="POST">
-                                        <input type="submit" name="delete" value="Cancel" class="btn red" style="margin: 0; padding: 0">
-                                    </form>
                                     <?php endif; ?>
                                 </td>
                             </tr>
                             <?php endforeach; ?>
                         </table>
                         <?php if($_SESSION['role'] == "Admin" && isset($_SESSION['user_id'])): ?>
+                    </div>
                 </div>
             </div>
         </div>

@@ -13,17 +13,14 @@
 <div class="wrapper-landing">
         
         <div class="container-item">
-            <img src="../img/iconJeco.png" alt="" width="100" height="auto" style="display: inline-block"><h1>Home Service Booking History</h1>
+        <img src="../img/iconJeco.png" alt="" width="100" height="auto" style="display: inline-block"><h1>Booking Status</h1>
+                <h2 style="color: white; font-style: italic">Home Service</h2>
         </div>
         <div class="tab">
                 <a href="<?php echo URLROOT; ?>/customers/regularBookingHistory"><button id="homeB" class="tablinks">Regular Booking</button></a>
                 <a href="<?php echo URLROOT; ?>/customers/homeServiceBookingHistory"><button id="regB" class="tablinks">Home Service</button></a>
                 </div>
                     <div class="wrapper-border">
-                    <?php
-                            $customerName = $_SESSION['username'];
-                            echo $customerName;
-                        ?>
                         <table id="customers">
                             <tr>
                                 <th>ID</th>
@@ -31,6 +28,7 @@
                                 <th>Contact</th>
                                 <th>Person</th>
                                 <th>Type</th>
+                                <th>Status</th>
                                 <th>Date</th>
                                 <th>Time</th>
                                 <th></th>
@@ -41,17 +39,19 @@
                                 <td><?php echo $customer->contact; ?></td>
                                 <td><?php echo $customer->numberOfPerson; ?></td>
                                 <td><?php echo $customer->type; ?></td>
+                                <td><?php echo $customer->remark; ?></td>
                                 <td><?php echo $customer->date; ?></td>
                                 <td><?php echo $customer->time; ?></td>
                                 <td>
                                     <?php if(isset($_SESSION['user_id']) == $customer->id): ?>
                                     <a
                                         class="btn orange"
+                                        style="margin: 2px; padding: 6px 2px 6px 2px"
                                         href="<?php echo URLROOT . "/customers/updateServices/" . $customer->id ?>">
                                         Update
                                     </a>
                                     <form action="<?php echo URLROOT . "/customers/delete/" . $customer->id ?>" method="POST">
-                                        <input type="submit" name="delete" value="Delete" class="btn red">
+                                        <input type="submit" name="delete" value="Delete" class="btn red" style="margin: 0; padding: 0">
                                     </form>
                                     <?php endif; ?>
                                 </td>

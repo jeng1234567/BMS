@@ -509,6 +509,100 @@ class Admins extends Controller {
         $this->view('admins/updateBranch', $data);
     }
 
+    public function updateHomeServiceRecords($id){
+        $admins = $this->adminModel->findHomeServiceRecordsById($id);
+
+        if(!isLoggedIn()){
+            header("Location: " . URLROOT . "/index");
+        }
+        elseif($_SESSION['role'] == "Customer"){
+            header("Location: " . URLROOT . "/index");
+        }
+        // var_dump($admins);
+        $data = [
+            'id' => $id,
+            'admins' => $admins,
+            'remark'=> '',
+            'remarkError' => ''
+
+        ];
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+            
+            $data = [
+                'id' => $id,
+                'admins' => $admins,
+                'user_id'=> $_SESSION['user_id'],
+                'remark'=> trim($_POST['remark']),
+                'remarkError' => '',
+            ];
+            // var_dump($data['service']);
+            if($data['remark'] == $this->adminModel->findHomeServiceRecordsById($id)->remark) {
+                $data['remarkError'] == 'At least change the Status name!';
+            }
+
+            if (empty($data['remarkError'])) {
+                if ($this->adminModel->updateHomeServiceRecords($data)) {
+                    header("Location: " . URLROOT . "/admins/homeServiceRecords");
+                } else {
+                    die("Something went wrong, please try again!");
+                }
+            } else {
+                $this->view('admins/updateHomeServiceRecords', $data);
+            }
+        }
+
+        $this->view('admins/updateHomeServiceRecords', $data);
+
+    }
+
+    public function updateRegularBookingRecords($id){
+        $admins = $this->adminModel->findRegularBookingRecordsById($id);
+
+        if(!isLoggedIn()){
+            header("Location: " . URLROOT . "/index");
+        }
+        elseif($_SESSION['role'] == "Customer"){
+            header("Location: " . URLROOT . "/index");
+        }
+        // var_dump($admins);
+        $data = [
+            'id' => $id,
+            'admins' => $admins,
+            'remark'=> '',
+            'remarkError' => ''
+
+        ];
+        if($_SERVER['REQUEST_METHOD'] == 'POST'){
+            $_POST = filter_input_array(INPUT_POST, FILTER_SANITIZE_STRING);
+            
+            $data = [
+                'id' => $id,
+                'admins' => $admins,
+                'user_id'=> $_SESSION['user_id'],
+                'remark'=> trim($_POST['remark']),
+                'remarkError' => '',
+            ];
+            // var_dump($data['service']);
+            if($data['remark'] == $this->adminModel->findRegularBookingRecordsById($id)->remark) {
+                $data['remarkError'] == 'At least change the Status name!';
+            }
+
+            if (empty($data['remarkError'])) {
+                if ($this->adminModel->updateRegularBookingRecords($data)) {
+                    header("Location: " . URLROOT . "/admins/regularBookingRecords");
+                } else {
+                    die("Something went wrong, please try again!");
+                }
+            } else {
+                $this->view('admins/updateRegularBookingRecords', $data);
+            }
+        }
+
+        $this->view('admins/updateRegularBookingRecords', $data);
+
+    }
+
     public function delete($id) {
         $admins = $this->adminModel->findServicesById($id);
 

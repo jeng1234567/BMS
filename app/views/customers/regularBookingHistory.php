@@ -13,7 +13,8 @@
 <div class="wrapper-landing">
         
         <div class="container-item">
-            <img src="../img/iconJeco.png" alt="" width="100" height="auto" style="display: inline-block"><h1>Regular Booking History</h1>
+            <img src="../img/iconJeco.png" alt="" width="100" height="auto" style="display: inline-block"><h1>Booking Status</h1>
+                <h2 style="color: white; font-style: italic">Regular Booking</h2>
         </div>
         <div class="tab">
                 <a href="<?php echo URLROOT; ?>/customers/regularBookingHistory"><button id="homeB" class="tablinks">Regular Booking</button></a>
@@ -25,6 +26,7 @@
                                 <th>ID</th>
                                 <th>Branch</th>
                                 <th>Type</th>
+                                <th>Status</th>
                                 <th>Date</th>
                                 <th>Time</th>
                                 <th></th>
@@ -34,6 +36,7 @@
                                 <td><?php echo $customer->id; ?></td>
                                 <td><?php echo $customer->branch; ?></td>
                                 <td><?php echo $customer->type; ?></td>
+                                <td><?php echo $customer->remark; ?></td>
                                 <td><?php echo $customer->date; ?></td>
                                 <td><?php echo $customer->time; ?></td>
                                 <td>
@@ -55,10 +58,7 @@
                         <a class="btn green" href="<?php echo URLROOT; ?>/customers/addServices">
                             Add
                         </a>
-                        <?php
-                            $customerName = $_SESSION['username'];
-                            echo $customerName;
-                        ?>
+                        
                 </div>
             </div>
         </div>
